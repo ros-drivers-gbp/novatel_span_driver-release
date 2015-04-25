@@ -1,3 +1,26 @@
+## novatel_span_driver (jade) - 1.0.0-0
+
+The packages in the `novatel_span_driver` repository were released into the `jade` distro by running `/usr/local/bin/bloom-release -r jade -t jade novatel_span_driver --new-track` on `Sat, 25 Apr 2015 22:21:55 -0000`
+
+These packages were released:
+- `novatel_msgs`
+- `novatel_span_driver`
+
+Version of package(s) in repository `novatel_span_driver`:
+- upstream repository: https://github.com/ros-drivers/novatel_span_driver.git
+- release repository: unknown
+- rosdistro version: `null`
+- old version: `null`
+- new version: `1.0.0-0`
+
+Versions of tools used:
+- bloom version: `0.5.19`
+- catkin_pkg version: `0.2.7`
+- rosdep version: `0.11.2`
+- rosdistro version: `0.4.1`
+- vcstools version: `0.1.36`
+
+
 ## novatel_span_driver (indigo) - 1.0.0-1
 
 The packages in the `novatel_span_driver` repository were released into the `indigo` distro by running `/usr/local/bin/bloom-release -r indigo -t indigo novatel_span_driver` on `Wed, 26 Nov 2014 14:34:52 -0000`
