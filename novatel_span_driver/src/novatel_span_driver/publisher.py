@@ -89,7 +89,7 @@ class NovatelPublisher(object):
         # Topic publishers
         self.pub_imu = rospy.Publisher('imu/data', Imu, queue_size=1)
         self.pub_odom = rospy.Publisher('navsat/odom', Odometry, queue_size=1)
-        self.pub_origin = rospy.Publisher('navsat/origin', Pose, queue_size=1)
+        self.pub_origin = rospy.Publisher('navsat/origin', Pose, queue_size=1, latch=True)
         self.pub_navsatfix = rospy.Publisher('navsat/fix', NavSatFix, queue_size=1)
 
         if self.publish_tf:
@@ -159,7 +159,7 @@ class NovatelPublisher(object):
         navsat.longitude = bestpos.longitude
 
         # Altitude in metres.
-        navsat.altitude = bestpos.altitude
+        navsat.altitude = bestpos.altitude + bestpos.undulation
         navsat.position_covariance[0] = pow(2, bestpos.latitude_std)
         navsat.position_covariance[4] = pow(2, bestpos.longitude_std)
         navsat.position_covariance[8] = pow(2, bestpos.altitude_std)
@@ -194,10 +194,9 @@ class NovatelPublisher(object):
         # Save this on an instance variable, so that it can be published
         # with the IMU message as well.
         self.orientation = tf.transformations.quaternion_from_euler(
-            radians(inspvax.pitch),
-            radians(inspvax.roll),
-            radians(90 - inspvax.azimuth))
-        print inspvax.azimuth
+                radians(inspvax.roll),
+                radians(inspvax.pitch),
+                -radians(inspvax.azimuth), 'syxz')
         odom.pose.pose.orientation = Quaternion(*self.orientation)
         odom.pose.covariance[21] = self.orientation_covariance[0] = pow(2, inspvax.pitch_std)
         odom.pose.covariance[28] = self.orientation_covariance[4] = pow(2, inspvax.roll_std)
@@ -210,7 +209,6 @@ class NovatelPublisher(object):
         TWIST_COVAR[0] = pow(2, inspvax.east_velocity_std)
         TWIST_COVAR[7] = pow(2, inspvax.north_velocity_std)
         TWIST_COVAR[14] = pow(2, inspvax.up_velocity_std)
-        #odom.twist.twist.angular = imu.angular_velocity
         odom.twist.covariance = TWIST_COVAR
 
         self.pub_odom.publish(odom)
@@ -229,7 +227,7 @@ class NovatelPublisher(object):
     def corrimudata_handler(self, corrimudata):
         # TODO: Work out these covariances properly. Logs provide covariances in local frame, not body
         imu = Imu()
-        imu.header.stamp == rospy.Time.now()
+        imu.header.stamp = rospy.Time.now()
         imu.header.frame_id = self.base_frame
 
         # Populate orientation field with one from inspvax message.
