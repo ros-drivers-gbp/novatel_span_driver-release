@@ -1,3 +1,28 @@
+## novatel_span_driver (melodic) - 1.1.0-0
+
+The packages in the `novatel_span_driver` repository were released into the `melodic` distro by running `/usr/bin/bloom-release --ros-distro melodic --track melodic novatel_span_driver` on `Mon, 12 Nov 2018 17:22:34 -0000`
+
+These packages were released:
+- `novatel_msgs`
+- `novatel_span_driver`
+
+Version of package(s) in repository `novatel_span_driver`:
+
+- upstream repository: https://github.com/ros-drivers/novatel_span_driver.git
+- release repository: unknown
+- rosdistro version: `null`
+- old version: `null`
+- new version: `1.1.0-0`
+
+Versions of tools used:
+
+- bloom version: `0.6.7`
+- catkin_pkg version: `0.4.9`
+- rosdep version: `0.12.2`
+- rosdistro version: `0.6.9`
+- vcstools version: `0.1.40`
+
+
 ## novatel_span_driver (lunar) - 1.1.0-0
 
 The packages in the `novatel_span_driver` repository were released into the `lunar` distro by running `/usr/bin/bloom-release --ros-distro lunar --track lunar novatel_span_driver` on `Mon, 12 Nov 2018 17:17:22 -0000`
