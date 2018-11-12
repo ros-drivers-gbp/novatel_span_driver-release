@@ -1,0 +1,12 @@
+Source: ros-lunar-novatel-span-driver
+Section: misc
+Priority: extra
+Maintainer: Mike Purvis <mpurvis@clearpathrobotics.com>
+Build-Depends: debhelper (>= 9.0.0), python-impacket, python-pcapy, ros-lunar-catkin, ros-lunar-roslaunch, ros-lunar-roslint, ros-lunar-rostest
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-lunar-novatel-span-driver
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, python-serial, ros-lunar-diagnostic-msgs, ros-lunar-diagnostic-updater, ros-lunar-geodesy, ros-lunar-novatel-msgs, ros-lunar-rospy, ros-lunar-sensor-msgs, ros-lunar-std-msgs, ros-lunar-tf
+Description: Python driver for NovAtel SPAN devices.
